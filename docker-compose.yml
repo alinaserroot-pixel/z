@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=false
+      - DRY_RUN=false
+      - DATABASE_URL=sqlite:///./registration_history.db
+      - BROWSER_HEADLESS=false
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - ./registration_history.db:/app/registration_history.db
+      - ./screenshots:/app/screenshots
+    restart: unless-stopped
